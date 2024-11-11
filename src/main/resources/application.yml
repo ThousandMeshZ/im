@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: im
+  profiles:
+    active: dev
+
+# MyBatis配置
+mybatis-plus:
+  mapperLocations: classpath*:mapper/**/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.platform
+  typeEnumsPackage: com.platform
+  configuration:
+    defaultEnumTypeHandler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+    mapUnderscoreToCamelCase: true
+    #日志打印
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cacheEnabled: true
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# PageHelper分页插件
+pagehelper:
+  helperDialect: mysql
+  # 合理化分页
+  reasonable: false
+  supportMethodsArguments: true
+  params: count=countSql
