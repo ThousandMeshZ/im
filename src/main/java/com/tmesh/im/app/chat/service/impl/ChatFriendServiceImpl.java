@@ -27,6 +27,7 @@ import com.tmesh.im.common.web.service.impl.BaseServiceImpl;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -42,6 +43,7 @@ import java.util.stream.Collectors;
  * @version : 1.0.0
  * @description : 好友 服务层实现
  */
+@Service("chatFriendService")
 public class ChatFriendServiceImpl extends BaseServiceImpl<ChatFriend> implements ChatFriendService {
 
     @Resource
@@ -97,7 +99,8 @@ public class ChatFriendServiceImpl extends BaseServiceImpl<ChatFriend> implement
             sourceEnum = ApplySourceEnum.PHONE;
         }
         // 按微信号搜索
-        else if ((chatUser = this.chatUserService.queryOne(new ChatUser().setChatNo(param))) != null) {
+        else if ((chatUser = this.chatUserService.queryOne(new ChatUser()
+                .setChatNo(param))) != null) {
             sourceEnum = ApplySourceEnum.CHAT_NO;
         }
         if (chatUser == null) {

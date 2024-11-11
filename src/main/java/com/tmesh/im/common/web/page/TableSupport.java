@@ -38,6 +38,7 @@ public class TableSupport {
         pageDomain.setPageSize(ServletUtils.getParameterToInt(PAGE_SIZE, 10));
         pageDomain.setOrderBy(ServletUtils.getParameter(ORDER_BY));
         pageDomain.setOrderSort(ServletUtils.getParameter(ORDER_SORT, "desc"));
+        return pageDomain;
     }
 
 }

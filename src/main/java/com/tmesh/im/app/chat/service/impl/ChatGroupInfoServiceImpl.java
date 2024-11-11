@@ -55,7 +55,9 @@ public class ChatGroupInfoServiceImpl extends BaseServiceImpl<ChatGroupInfo> imp
             chatGroupInfo = JSONUtil.toBean(this.redisUtils.get(key), new TypeReference<ChatGroupInfo>() {}, false);
         }
         // 缓存不存在
-        else if ((chatGroupInfo = this.queryOne(new ChatGroupInfo().setUserId(userId).setGroupId(groupId))) != null) {
+        else if ((chatGroupInfo = this.queryOne(new ChatGroupInfo()
+                .setUserId(userId)
+                .setGroupId(groupId))) != null) {
             this.redisUtils.set(key, JSONUtil.toJsonStr(chatGroupInfo), AppConstants.REDIS_GROUP_TIME, TimeUnit.DAYS);
         }
         if (YesOrNoEnum.NO.equals(verify)) {
@@ -75,19 +77,22 @@ public class ChatGroupInfoServiceImpl extends BaseServiceImpl<ChatGroupInfo> imp
     
     @Override
     public Long countByGroup(Long groupId) {
-        return this.queryCount(new ChatGroupInfo().setGroupId(groupId));
+        return this.queryCount(new ChatGroupInfo()
+                .setGroupId(groupId));
     }
     
     @Override
     public List<Long> queryUserList(Long groupId) {
         // 查询所有成员
-        List<ChatGroupInfo> infoList = this.queryList(new ChatGroupInfo().setGroupId(groupId));
+        List<ChatGroupInfo> infoList = this.queryList(new ChatGroupInfo()
+                .setGroupId(groupId));
         return infoList.stream().map(ChatGroupInfo::getUserId).toList();
     }
     
     @Override
     public List<ChatGroupInfo> queryUserList(Long groupId, List<Long> userList) {
-        List<ChatGroupInfo> list = this.queryList(new ChatGroupInfo().setGroupId(groupId));
+        List<ChatGroupInfo> list = this.queryList(new ChatGroupInfo()
+                .setGroupId(groupId));
         if (!CollectionUtils.isEmpty(userList)) {
             List<ChatGroupInfo> finalList = list;
             list = list.stream().filter(chatGroupInfo -> finalList.contains(chatGroupInfo.getUserId())).toList();
@@ -98,7 +103,8 @@ public class ChatGroupInfoServiceImpl extends BaseServiceImpl<ChatGroupInfo> imp
     @Override
     public Map<Long, ChatGroupInfo> queryUserMap(Long groupId) {
         // 查询所有成员
-        List<ChatGroupInfo> list = this.queryList(new ChatGroupInfo().setGroupId(groupId));
+        List<ChatGroupInfo> list = this.queryList(new ChatGroupInfo()
+                .setGroupId(groupId));
         return list.stream().collect(
                 Collectors.toMap(
                         ChatGroupInfo::getUserId, chatGroupInfo -> chatGroupInfo, (k1, k2) -> k1
@@ -108,7 +114,8 @@ public class ChatGroupInfoServiceImpl extends BaseServiceImpl<ChatGroupInfo> imp
 
     @Override
     public void delByGroup(Long groupId) {
-        this.chatGroupInfoDao.delete(new QueryWrapper<>(new ChatGroupInfo().setGroupId(groupId)));
+        this.chatGroupInfoDao.delete(new QueryWrapper<>(new ChatGroupInfo()
+                .setGroupId(groupId)));
         // 删除群成员
         String redisKey = StrUtil.format(AppConstants.REDIS_GROUP_INFO, groupId, "*");
         this.redisUtils.delete(redisKey);

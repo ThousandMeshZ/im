@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Data
 public class AmapConfig {
 
-    @Value("${amap.key}")
+    @Value("${platform.amap.key}")
     private String key;
 
 }

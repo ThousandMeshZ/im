@@ -9,14 +9,14 @@
 
     <!-- 查询列表字段 -->
     <select id="queryList" resultType="com.tmesh.im.app.chat.domain.ChatFriend">
-        <include refid="baseSql"></include>
+        <include refid="baseSql"/>
         <where>
             <if test="fromId != null">
                 and from_id = #{fromId}
             </if>
         </where>
     </select>
-    
+
     <select id="friendList" resultType="com.tmesh.im.app.chat.vo.FriendVo06">
         SELECT cu.user_id AS user_id, cf.remark AS nick_name, cu.portrait, cu.chat_no
         FROM chat_friend cf
@@ -29,4 +29,5 @@
         INNER JOIN chat_friend cf2 ON cf1.`from_id` = cf2.`to_id` AND cf1.`to_id` = cf2.`from_id` AND cf1.`black` = 'N' AND cf2.`black` = 'N'
         WHERE cf1.from_id = #{userId}
     </select>
+
 </mapper>

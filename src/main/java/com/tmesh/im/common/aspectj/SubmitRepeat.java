@@ -1,6 +1,7 @@
 package com.tmesh.im.common.aspectj;
 
-import com.platform.common.enums.YesOrNoEnum;
+
+import com.tmesh.im.common.enums.YesOrNoEnum;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

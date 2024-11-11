@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 @Data
 public class TencentConfig {
 
-    @Value("${tencent.appId}")
+    @Value("${platform.tencent.appId}")
     private String appId;
 
-    @Value("${tencent.appKey}")
+    @Value("${platform.tencent.appKey}")
     private String appKey;
 
-    @Value("${tencent.appSecret}")
+    @Value("${platform.tencent.appSecret}")
     private String appSecret;
 
 }

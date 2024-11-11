@@ -20,16 +20,18 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <pagehelper.version>1.4.1</pagehelper.version>
         <mybatis-plus.version>3.5.3</mybatis-plus.version>
-        <hutool.version>5.8.16</hutool.version>
+        <mybatis-plus-dynamic-datasource.version>3.5.2</mybatis-plus-dynamic-datasource.version>
+        <hutool.version>5.8.23</hutool.version>
         <shiro.version>1.12.0</shiro.version>
         <sharding.version>4.1.1</sharding.version>
         <tencent.version>3.1.473</tencent.version>
-        <netty.version>4.1.31.Final</netty.version>
+        <netty.version>4.1.94.Final</netty.version>
         <aliyun-sdk-oss>3.11.2</aliyun-sdk-oss>
         <qiniu.version>7.8.0</qiniu.version>
         <qcloud.cos.version>5.6.3</qcloud.cos.version>
         <fastdfs.version>1.27.2</fastdfs.version>
         <minio.version>8.2.2</minio.version>
+        <druid.version>1.2.23</druid.version>
     </properties>
 
     <dependencies>
@@ -38,6 +40,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.alibaba</groupId>
+                    <artifactId>druid-spring-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -152,6 +160,19 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- 数据库相关配置启动器 jdbctemplate 事务相关-->
+<!--        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>-->
+
+        <!-- druid启动器的依赖  -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-3-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
         <!--hutool -->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -172,14 +193,35 @@
             <artifactId>mybatis-plus-extension</artifactId>
             <version>${mybatis-plus.version}</version>
         </dependency>
+
+        <!-- mybatis plus 解决 sharding+ 动态数据源启动报错：Property ‘sqlSessionFactory‘ or ‘sqlSessionTemplate‘ are required -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>${mybatis-plus-dynamic-datasource.version}</version>
+        </dependency>
+
+        <!-- mybatis-plus 代码生成器依赖 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
         <!-- mybatis-plus end -->
 
         <!-- 实现对 Sharding-JDBC 的自动化配置 -->
-        <dependency>
+        <!-- 旧版本分库分表  -->
+<!--        <dependency>
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
             <version>${sharding.version}</version>
-        </dependency>
+        </dependency>-->
+        <!--5.1.2版本分库分表  -->
+<!--        <dependency>
+           <groupId>org.apache.shardingsphere</groupId>
+           <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+           <version>5.1.2</version>
+       </dependency>-->
 
         <!-- pagehelper 分页插件 -->
         <dependency>
@@ -288,7 +330,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
+                    <fork>true</fork> <!-- 如果没有该配置，devtools 不会生效 -->
                 </configuration>
             </plugin>
         </plugins>

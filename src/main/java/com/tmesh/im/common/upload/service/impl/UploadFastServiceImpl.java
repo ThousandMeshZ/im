@@ -33,6 +33,9 @@ public class UploadFastServiceImpl extends UploadBaseService implements UploadSe
     @Resource
     private UploadConfig uploadConfig;
 
+    @Resource
+    private FastUtils fastUtils;
+
     @Override
     public String getServerUrl() {
         return this.uploadConfig.getServerUrl();
@@ -58,7 +61,7 @@ public class UploadFastServiceImpl extends UploadBaseService implements UploadSe
     public UploadFileVo uploadFile(MultipartFile file, String folder) {
         StorePath storePath;
         try {
-            storePath = FastUtils.uploadFile(file);
+            storePath = this.fastUtils.uploadFile(file);
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage(), e);
@@ -80,7 +83,7 @@ public class UploadFastServiceImpl extends UploadBaseService implements UploadSe
     public UploadFileVo uploadFile(File file, String folder) {
         StorePath storePath;
         try {
-            storePath = FastUtils.uploadFile(file);
+            storePath = this.fastUtils.uploadFile(file);
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage(), e);

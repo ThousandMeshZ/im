@@ -7,14 +7,15 @@ spring:
 # MyBatis配置
 mybatis-plus:
   mapperLocations: classpath*:mapper/**/*.xml
+  map-underscore-to-camel-case: true
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.platform
-  typeEnumsPackage: com.platform
+  typeAliasesPackage: com.tmesh.im
+  typeEnumsPackage: com.tmesh.im
   configuration:
     defaultEnumTypeHandler: org.apache.ibatis.type.EnumOrdinalTypeHandler
     mapUnderscoreToCamelCase: true
     #日志打印
-    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     cacheEnabled: true
   global-config:
     banner: false

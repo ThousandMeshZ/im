@@ -81,7 +81,8 @@ public class ChatUserServiceImpl extends BaseServiceImpl<ChatUser> implements Ch
         String nickName = authVo.getNickName();
         String msg = "此手机号码已注册过，请勿重复注册";
         // 验证手机号是否注册过
-        if (this.queryCount(new ChatUser().setPhone(phone)) > 0) {
+        if (this.queryCount(new ChatUser()
+                .setPhone(phone)) > 0) {
             throw new BaseException(msg);
         }
         String salt = RandomUtil.randomString(4);

@@ -16,32 +16,32 @@ public class UploadConfig {
     /**
      * 服务端域名
      */
-    @Value("${upload.serverUrl}")
+    @Value("${platform.upload.serverUrl}")
     private String serverUrl;
     /**
      * accessKey
      */
-    @Value("${upload.accessKey}")
+    @Value("${platform.upload.accessKey}")
     private String accessKey;
     /**
      * secretKey
      */
-    @Value("${upload.secretKey}")
+    @Value("${platform.upload.secretKey}")
     private String secretKey;
     /**
      * bucket
      */
-    @Value("${upload.bucket}")
+    @Value("${platform.upload.bucket}")
     private String bucket;
     /**
      * region
      */
-    @Value("${upload.region}")
+    @Value("${platform.upload.region}")
     private String region;
     /**
      * 封面
      */
-    @Value("${upload.post}")
+    @Value("${platform.upload.post}")
     private String post;
 
 }

@@ -68,7 +68,7 @@ public class ChatGroupServiceImpl extends BaseServiceImpl<ChatGroup> implements 
     @Resource
     private ChatPushService chatPushService;
 
-    @Value("${group.portrait}")
+    @Value("${platform.group.portrait}")
     private String portrait;
 
     @Autowired
@@ -103,9 +103,11 @@ public class ChatGroupServiceImpl extends BaseServiceImpl<ChatGroup> implements 
         // 群明细
         List<ChatGroupInfo> groupInfoList = new ArrayList<>();
         userList.forEach(user -> 
-                groupInfoList.add(new ChatGroupInfo(user.getUserId(), 
-                        group.getId()).setKeepGroup(YesOrNoEnum.YES)));
-        groupInfoList.add(new ChatGroupInfo(master.getUserId(), group.getId()).setKeepGroup(YesOrNoEnum.YES));
+                groupInfoList.add(new ChatGroupInfo(user.getUserId(), group.getId())
+                        .setKeepGroup(YesOrNoEnum.YES)));
+
+        groupInfoList.add(new ChatGroupInfo(master.getUserId(), group.getId())
+                .setKeepGroup(YesOrNoEnum.YES));
         Integer batchAdd = this.groupInfoService.batchAdd(groupInfoList);
         String groupName = this.formatGroupName(group.getId(), group.getName());
         PushParamVo paramVo1 = new PushParamVo()

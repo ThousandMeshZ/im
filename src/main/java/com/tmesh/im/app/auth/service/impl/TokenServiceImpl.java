@@ -9,6 +9,7 @@ import com.tmesh.im.common.redis.RedisUtils;
 import com.tmesh.im.common.shiro.LoginUser;
 import com.tmesh.im.common.shiro.ShiroUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -18,6 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @version : 1.0.0
  * @description : token 服务层实现
  */
+@Service("tokenService")
 public class TokenServiceImpl implements TokenService {
     
     @Autowired

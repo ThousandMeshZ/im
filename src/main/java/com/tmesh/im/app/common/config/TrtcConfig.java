@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 @Data
 public class TrtcConfig {
 
-    @Value("${trtc.appId}")
+    @Value("${platform.trtc.appId}")
     private String appId;
-    @Value("${trtc.expire}")
+    @Value("${platform.trtc.expire}")
     private String expire;
-    @Value("${trtc.secret}")
+    @Value("${platform.trtc.secret}")
     private String secret;
 
 }

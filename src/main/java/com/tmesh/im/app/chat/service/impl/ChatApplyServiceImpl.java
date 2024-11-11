@@ -75,7 +75,9 @@ public class ChatApplyServiceImpl extends BaseServiceImpl<ChatApply> implements 
                 .setApplyStatus(ApplyStatusEnum.NONE);
         
         ChatApply chatApply = this.queryOne(queryChatApply);
-        queryChatApply.setApplySource(applySource).setReason(reason).setCreateTime(now);
+        queryChatApply.setApplySource(applySource)
+                .setReason(reason)
+                .setCreateTime(now);
         if (chatApply == null) {
             this.add(chatApply);
         } else {

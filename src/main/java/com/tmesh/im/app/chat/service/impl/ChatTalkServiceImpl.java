@@ -156,6 +156,6 @@ public class ChatTalkServiceImpl implements ChatTalkService {
     }
 
     public static void main(String[] args) {
-        log.info("{}", IdUtil.simpleUUID());
+        log.info(IdUtil.simpleUUID());
     }
 }

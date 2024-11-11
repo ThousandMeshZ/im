@@ -4,6 +4,7 @@ import com.github.tobato.fastdfs.domain.conn.FdfsWebServer;
 import com.github.tobato.fastdfs.domain.fdfs.StorePath;
 import com.github.tobato.fastdfs.domain.fdfs.ThumbImageConfig;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;
@@ -21,16 +22,26 @@ import java.util.Set;
 @Slf4j
 @Component
 public class FastUtils {
-    private static FastFileStorageClient fastFileStorageClient;
 
-    public FastUtils(ThumbImageConfig thumbImageConfig, FastFileStorageClient fastFileStorageClient, FdfsWebServer fdfsWebServer) {
+    @Resource
+    private FastFileStorageClient fastFileStorageClient;
+
+    @Resource
+    private ThumbImageConfig thumbImageConfig;
+
+    @Resource
+    private FdfsWebServer fdfsWebServer;
+
+/*     public FastUtils(ThumbImageConfig thumbImageConfig, FastFileStorageClient fastFileStorageClient, FdfsWebServer fdfsWebServer) {
+        FastUtils.thumbImageConfig = thumbImageConfig;
         FastUtils.fastFileStorageClient = fastFileStorageClient;
-    }
+        FastUtils.fdfsWebServer = fdfsWebServer;
+    } */
 
-    public static StorePath uploadFile(MultipartFile multipartFile) {
+    public StorePath uploadFile(MultipartFile multipartFile) {
         StorePath storePath;
         try {
-            storePath = fastFileStorageClient.uploadFile(multipartFile.getInputStream(), multipartFile.getSize(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()), (Set) null);
+            storePath = this.fastFileStorageClient.uploadFile(multipartFile.getInputStream(), multipartFile.getSize(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()), (Set) null);
         } catch (Exception var6) {
             log.error(var6.getMessage(), var6);
             throw new RuntimeException("文件上传失败");
@@ -38,11 +49,11 @@ public class FastUtils {
         return storePath;
     }
 
-    public static StorePath uploadFile(File file) {
+    public StorePath uploadFile(File file) {
         StorePath storePath;
         try {
             FileInputStream inputStream = new FileInputStream(file);
-            storePath = fastFileStorageClient.uploadFile(inputStream, file.length(), FilenameUtils.getExtension(file.getName()), null);
+            storePath = this.fastFileStorageClient.uploadFile(inputStream, file.length(), FilenameUtils.getExtension(file.getName()), null);
         } catch (Exception var6) {
             log.error(var6.getMessage(), var6);
             throw new RuntimeException("文件上传失败");

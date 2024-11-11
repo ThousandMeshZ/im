@@ -12,6 +12,7 @@ import com.tmesh.im.app.push.enums.PushMsgEnum;
 import com.tmesh.im.app.push.enums.PushNoticeEnum;
 import com.tmesh.im.app.push.service.ChatPushService;
 import com.tmesh.im.app.push.vo.*;
+import com.tmesh.im.app.ws.BootWebSocketHandler;
 import com.tmesh.im.common.constant.AppConstants;
 import com.tmesh.im.common.enums.YesOrNoEnum;
 import com.tmesh.im.common.redis.RedisUtils;
