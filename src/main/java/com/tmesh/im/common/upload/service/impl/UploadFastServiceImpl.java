@@ -27,7 +27,7 @@ import java.io.File;
 @Service("uploadFastService")
 @Configuration
 @NoArgsConstructor
-@ConditionalOnProperty(prefix = "upload", name = "uploadType", havingValue = "fast")
+@ConditionalOnProperty(prefix = "platform.upload", name = "uploadType", havingValue = "fast")
 public class UploadFastServiceImpl extends UploadBaseService implements UploadService {
 
     @Resource

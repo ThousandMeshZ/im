@@ -31,7 +31,7 @@ import java.util.Date;
 @Slf4j
 @Service("uploadOssService")
 @Configuration
-@ConditionalOnProperty(prefix = "upload", name = "uploadType", havingValue = "oss")
+@ConditionalOnProperty(prefix = "platform.upload", name = "uploadType", havingValue = "oss")
 public class UploadOssServiceImpl extends UploadBaseService implements UploadService {
 
     @Resource

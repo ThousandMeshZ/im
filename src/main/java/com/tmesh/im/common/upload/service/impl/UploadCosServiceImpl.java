@@ -40,7 +40,7 @@ import java.io.InputStream;
 @Slf4j
 @Service("uploadCosService")
 @Configuration
-@ConditionalOnProperty(prefix = "upload", name = "uploadType", havingValue = "cos")
+@ConditionalOnProperty(prefix = "platform.upload", name = "uploadType", havingValue = "cos")
 public class UploadCosServiceImpl extends UploadBaseService implements UploadService {
 
     @Resource

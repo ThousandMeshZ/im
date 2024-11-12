@@ -24,7 +24,7 @@ import java.io.File;
 @Slf4j
 @Service("uploadLocalService")
 @Configuration
-@ConditionalOnProperty(prefix = "upload", name = "uploadType", havingValue = "local")
+@ConditionalOnProperty(prefix = "platform.upload", name = "uploadType", havingValue = "local")
 public class UploadLocalServiceImpl extends UploadBaseService implements UploadService {
 
     @Resource

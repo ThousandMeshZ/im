@@ -26,7 +26,7 @@ import java.io.File;
 @Slf4j
 @Service("uploadMinioService")
 @Configuration
-@ConditionalOnProperty(prefix = "upload", name = "uploadType", havingValue = "minio")
+@ConditionalOnProperty(prefix = "platform.upload", name = "uploadType", havingValue = "minio")
 public class UploadMinioServiceImpl extends UploadBaseService implements UploadService {
 
     @Resource

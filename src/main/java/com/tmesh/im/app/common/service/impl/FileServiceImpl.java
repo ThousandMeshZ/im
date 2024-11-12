@@ -29,7 +29,7 @@ import java.io.IOException;
 @Service("fileService")
 public class FileServiceImpl implements FileService {
 
-    @Resource(name = "uploadOssService")
+    @Resource
     private UploadService uploadService;
 
     @Autowired

@@ -29,7 +29,7 @@ import java.io.InputStream;
 @Slf4j
 @Service("uploadKodoService")
 @Configuration
-@ConditionalOnProperty(prefix = "upload", name = "uploadType", havingValue = "kodo")
+@ConditionalOnProperty(prefix = "platform.upload", name = "uploadType", havingValue = "kodo")
 public class UploadKodoServiceImpl extends UploadBaseService implements UploadService {
 
     @Resource

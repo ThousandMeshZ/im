@@ -31,3 +31,16 @@ pagehelper:
   reasonable: false
   supportMethodsArguments: true
   params: count=countSql
+
+# 日志配置
+logging:
+  group:
+    tomcat: org.apache.catalina,org.apache.coyote,org.apache.tomcat
+  level:
+    com.tmesh: debug
+    org.springframework: warn
+    com.baomidou.example.mapper: debug
+    root: debug
+    sql: debug
+    tomcat: info
+    web: info
