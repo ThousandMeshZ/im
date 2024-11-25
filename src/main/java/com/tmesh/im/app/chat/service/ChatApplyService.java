@@ -21,7 +21,7 @@ public interface ChatApplyService extends BaseService<ChatApply> {
     /**
      * 申请记录
      */
-    PageInfo list();
+    PageInfo pageList();
 
     /**
      * 查询详情

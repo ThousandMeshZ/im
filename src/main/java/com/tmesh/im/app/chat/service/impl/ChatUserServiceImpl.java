@@ -110,7 +110,7 @@ public class ChatUserServiceImpl extends BaseServiceImpl<ChatUser> implements Ch
     }
     
     @Override
-    public Integer resetPass(Long userId, String password) {
+    public boolean resetPass(Long userId, String password) {
         String salt = RandomUtil.randomString(4);
         ChatUser chatUser = new ChatUser()
                 .setUserId(userId)
@@ -120,7 +120,7 @@ public class ChatUserServiceImpl extends BaseServiceImpl<ChatUser> implements Ch
     }
     
     @Override
-    public Integer editPass(String password, String pwd) {
+    public boolean editPass(String password, String pwd) {
         // 当前用户
         ChatUser currentChatUser = this.getById(ShiroUtils.getUserId());
         if (!Md5Utils.credentials(password, currentChatUser.getSalt()).equalsIgnoreCase(currentChatUser.getPassword())) {

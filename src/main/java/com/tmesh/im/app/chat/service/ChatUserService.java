@@ -27,12 +27,12 @@ public interface ChatUserService extends BaseService<ChatUser> {
     /**
      * 重置密码
      */
-    Integer resetPass(Long userId, String password);
+    boolean resetPass(Long userId, String password);
 
     /**
      * 修改密码
      */
-    Integer editPass(String password, String pwd);
+    boolean editPass(String password, String pwd);
 
     /**
      * 修改微聊号

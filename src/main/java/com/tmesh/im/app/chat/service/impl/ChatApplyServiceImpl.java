@@ -88,9 +88,9 @@ public class ChatApplyServiceImpl extends BaseServiceImpl<ChatApply> implements 
         PushParamVo paramVo = new PushParamVo().setToId(acceptId);
         this.chatPushService.pushNotice(paramVo, PushNoticeEnum.FRIEND_APPLY);
     }
-    
+
     @Override
-    public PageInfo list() {
+    public PageInfo pageList() {
         Long userId = ShiroUtils.getUserId();
         // 清空角标
         this.redisUtils.delete(AppConstants.REDIS_FRIEND_NOTICE + userId);
