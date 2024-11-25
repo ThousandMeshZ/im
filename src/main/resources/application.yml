@@ -37,10 +37,10 @@ logging:
   group:
     tomcat: org.apache.catalina,org.apache.coyote,org.apache.tomcat
   level:
-    com.tmesh: debug
-    org.springframework: warn
-    com.baomidou.example.mapper: debug
-    root: debug
+    com.tmesh: info
+    org.springframework: info
+    com.baomidou.example.mapper: info
+    root: info
     sql: debug
     tomcat: info
     web: info
