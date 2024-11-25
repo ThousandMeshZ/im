@@ -2,6 +2,7 @@ package com.tmesh.im.common.web.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageInfo;
 import com.tmesh.im.common.exception.BaseException;
 import com.tmesh.im.common.utils.BeanCopyUtils;
@@ -25,7 +26,7 @@ import java.util.function.Consumer;
  * @version : 1.0.0
  * @description : 基础 service 实现层基类
  */
-public class BaseServiceImpl<T> implements BaseService<T> {
+public class BaseServiceImpl<T> extends ServiceImpl<BaseDao<T>, T> implements BaseService<T> {
 
     protected final static String EXIST_MAG = "数据不存在";
 
@@ -38,8 +39,8 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     private static final Integer batchCount = 1000;
 
     @Override
-    public Integer add(T entity) {
-        return this.baseDao.insert(entity);
+    public boolean add(T entity) {
+        return super.save(entity);
     }
 
     @Override
@@ -62,24 +63,16 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         return this.baseDao.deleteBatchIds(ids);
     }
 
-    @Override
-    public Integer updateById(T entity) {
-        return this.baseDao.updateById(entity);
-    }
 
     @Override
     public T getById(Long id) {
-        return this.baseDao.selectById(id);
+        return super.getById(id);
     }
 
-    @Override
-    public Integer update(Wrapper wrapper) {
-        return this.baseDao.update(null, wrapper);
-    }
 
     @Override
     public T findById(Long id) {
-        T t = this.getById(id);
+        T t = super.getById(id);
         if (t == null) {
             throw new BaseException(BaseServiceImpl.EXIST_MAG);
         }
@@ -88,7 +81,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
     @Override
     public List<T> getByIds(Collection<? extends Serializable> idList) {
-        return this.baseDao.selectBatchIds(idList);
+        return super.listByIds(idList);
     }
 
     @Override
@@ -99,7 +92,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
     @Override
     public Long queryCount(Wrapper<T> wrapper) {
-        return this.baseDao.selectCount(wrapper).longValue();
+        return super.count(wrapper);
     }
 
     @Override
@@ -110,7 +103,8 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
     @Override
     public List<T> queryList(Wrapper<T> wrapper) {
-        return this.baseDao.selectList(wrapper);
+        return super.list(wrapper);
+//        return this.baseDao.selectList(wrapper);
     }
 
     @Override
@@ -121,7 +115,8 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
     @Override
     public T queryOne(Wrapper<T> wrapper) {
-        return this.baseDao.selectOne(wrapper);
+        return super.getOne(wrapper);
+//        return this.baseDao.selectOne(wrapper);
     }
 
     @Override

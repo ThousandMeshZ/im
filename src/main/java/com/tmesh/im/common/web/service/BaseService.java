@@ -1,6 +1,7 @@
 package com.tmesh.im.common.web.service;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -12,12 +13,12 @@ import java.util.List;
  * @description : 基础 service 接口层基类
  */
 
-public interface BaseService<T> {
+public interface BaseService<T> extends IService<T> {
 
     /**
      * 新增（并返回id）
      */
-    Integer add(T entity);
+    boolean add(T entity);
 
     /**
      * 根据 id 删除
@@ -39,15 +40,6 @@ public interface BaseService<T> {
      */
     Integer deleteByIds(List<Long> ids);
 
-    /**
-     * 根据 id 修改
-     */
-    Integer updateById(T entity);
-
-    /**
-     * 根据条件更新
-     */
-    Integer update(Wrapper wrapper);
 
     /**
      * 根据 id 查询
