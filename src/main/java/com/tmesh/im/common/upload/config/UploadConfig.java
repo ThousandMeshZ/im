@@ -43,6 +43,10 @@ public class UploadConfig {
      */
     @Value("${platform.upload.post}")
     private String post;
-
+    /**
+     * 图片地址
+     */
+    @Value("${platform.upload.photoUrl}")
+    private String photoUrl;
 }
 

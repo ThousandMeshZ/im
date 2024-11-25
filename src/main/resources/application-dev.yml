@@ -42,12 +42,14 @@ platform:
   # oss配置
   upload:
     uploadType: oss
-    serverUrl: http://xxxx.oss-cn-beijing.aliyuncs.com
-    accessKey: xxxxxxxxxxxxxxx
+    serverUrl: https://oss-cn-hangzhou.aliyuncs.com
+    accessKey: xxxxxxxxxxxxxxxxx
     secretKey: xxxxxxxxxxxxxxxxx
-    bucket: xxxx
-    region: oss-cn-beijing.aliyuncs.com
+    bucket: tmesh-im
+    region: oss-cn-hangzhou.aliyuncs.com
     post: ?x-oss-process=video/snapshot,t_1,m_fast
+    callbackUrl: 139.224.224.178
+    photoUrl: xxxxxxxxxxxxxxxxx
 
   # 实时语音/视频
   trtc:

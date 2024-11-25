@@ -92,7 +92,7 @@ public class UploadOssServiceImpl extends UploadBaseService implements UploadSer
             String fileType = UploadBaseService.getFileType(file);
             client.putObject(this.uploadConfig.getBucket(), fileKey, file.getInputStream());
             // 服务器地址
-            String serverUrl = this.uploadConfig.getServerUrl();
+            String serverUrl = this.uploadConfig.getPhotoUrl();
             return format(fileName, serverUrl, fileKey, fileType);
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,7 +118,7 @@ public class UploadOssServiceImpl extends UploadBaseService implements UploadSer
             InputStream inputStream = FileUtil.getInputStream(file);
             client.putObject(this.uploadConfig.getBucket(), fileKey, inputStream);
             // 服务器地址
-            String serverUrl = this.uploadConfig.getServerUrl();
+            String serverUrl = this.uploadConfig.getPhotoUrl();
             return format(fileName, serverUrl, fileKey, fileType);
         } catch (Exception e) {
             e.printStackTrace();
