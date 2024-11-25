@@ -27,7 +27,13 @@ platform:
   # token超时时间（分钟）默认7天
   timeout: 10080
   # 短信开关（N关Y开）
-  sms: N
+  sms:
+    open: N
+    host: https://zwp.market.alicloudapi.com
+    path: /sms/sendv2
+    appcode: xxxxxxxxxxxxxxxxxxx
+    method: GET
+    skin:
   # 跨域开关（N关Y开）
   cors: Y
   group:
