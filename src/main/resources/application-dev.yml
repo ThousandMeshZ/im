@@ -29,7 +29,7 @@ platform:
   # 短信开关（N关Y开）
   sms: N
   # 跨域开关（N关Y开）
-  cors: N
+  cors: Y
   group:
     portrait: https://img.alicdn.com/imgextra/i3/87413133/O1CN01mHA9DJ1Z0xlORnKuW_!!87413133.png
 
