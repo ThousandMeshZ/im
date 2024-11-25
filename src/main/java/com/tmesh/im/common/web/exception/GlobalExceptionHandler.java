@@ -6,6 +6,7 @@ import com.tmesh.im.common.web.domain.AjaxResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
@@ -19,6 +20,13 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @Slf4j
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(BaseException.class)
+    public AjaxResult baseExceptionAdvice(BaseException e) {
+        log.error("自定义异常:" + e.getMessage(), e);
+        return AjaxResult.fail(e.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
     public AjaxResult handleException(Exception e) {
         log.error("全局异常:" + e.getMessage(), e);
 
@@ -26,7 +34,7 @@ public class GlobalExceptionHandler {
          * 路径不存在
          */
         if (e instanceof NoHandlerFoundException
-            || e instanceof HttpRequestMethodNotSupportedException) {
+                || e instanceof HttpRequestMethodNotSupportedException) {
             return AjaxResult.result(ResultCodeEnum.NOT_FOUND);
         }
 
@@ -40,12 +48,12 @@ public class GlobalExceptionHandler {
         /**
          * 自定义异常
          */
-        if (e instanceof BaseException) {
+/*         if (e instanceof BaseException) {
             if (ResultCodeEnum.VERSION.equals(((BaseException) e).getResultCode())) {
                 return AjaxResult.result(ResultCodeEnum.VERSION);
             }
             return AjaxResult.fail(e.getMessage());
-        }
+        } */
         return AjaxResult.fail();
     }
 }

@@ -27,6 +27,7 @@ public class BaseException extends RuntimeException {
     private String message;
 
     public BaseException(String message) {
+        this.resultCode = ResultCodeEnum.FAIL;
         this.message = message;
     }
 
