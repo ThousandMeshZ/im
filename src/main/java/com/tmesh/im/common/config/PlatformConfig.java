@@ -42,7 +42,7 @@ public class PlatformConfig {
     /**
      * 是否开启短信
      */
-    @Value("${platform.sms:N}")
+    @Value("${platform.sms.open:N}")
     public static YesOrNoEnum SMS;
 
     /* @Value("${platform.timeout}")
